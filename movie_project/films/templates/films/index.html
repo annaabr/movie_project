@@ -1,9 +1,34 @@
 {% extends 'films/layout.html' %}
 
 {% block title %}
-    <title>Информация о фильмах</title>
+    <title>Фильмы</title>
 {% endblock %}
 
 {% block content %}
-    <h1>здесь будет информация о фильмах</h1>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Мои любимые фильмы</h1>
+
+        {% if films %}
+            <div class="row">
+                {% for film in films %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h2 class="card-title">{{ film.title }}</h2>
+                                <h4 class="card-subtitle mb-2 text-muted">Описание фильма:</h4>
+                                <p class="card-text">{{ film.description }}</p>
+                                <h4 class="card-subtitle mb-2 text-muted">Отзыв на фильм:</h4>
+                                <p class="card-text">{{ film.feedback }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="alert alert-warning" role="alert">
+                <h4 class="alert-heading">Информации о фильмах пока нет</h4>
+                <p>Добавьте свои любимые фильмы, чтобы они появились здесь.</p>
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}
